@@ -1,68 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CyberX Music Player</title>
-<style>
-  body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #121212;
-    color: #fff;
-    font-family: Arial, sans-serif;
-    transition: background-color 0.3s;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyberX Music Player</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at top, #0f2027, #203a43, #2c5364);
+      color: white;
+      font-family: Arial, sans-serif;
+      transition: background 0.5s;
+    }
 
-  #playBtn {
-    padding: 15px 40px;
-    font-size: 18px;
-    border: none;
-    border-radius: 15px;
-    background: linear-gradient(45deg, #ff6a00, #ee0979);
-    color: white;
-    cursor: pointer;
-    box-shadow: 0 0 20px rgba(238,9,121,0.7);
-    transition: all 0.3s ease;
-  }
+    .player {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
 
-  #playBtn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 30px rgba(255,106,0,0.8);
-  }
-</style>
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+
+    audio {
+      width: 300px;
+      outline: none;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      background-color: #00c6ff;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    button:hover {
+      background-color: #0072ff;
+      transform: scale(1.05);
+    }
+
+    .light-mode {
+      background: radial-gradient(circle at top, #ffffff, #e0e0e0, #cfcfcf);
+      color: black;
+    }
+
+    .glow {
+      box-shadow: 0 0 20px #00c6ff, 0 0 40px #0072ff;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { box-shadow: 0 0 15px #00c6ff; }
+      to { box-shadow: 0 0 40px #0072ff; }
+    }
+  </style>
 </head>
 <body>
+  <div class="player glow">
+    <h1>🎧 Batmanna Ansak – CyberX Player</h1>
+    <audio controls autoplay>
+      <source src="https://raw.githubusercontent.com/nexty22/cyberX/main/batmanna_ansak.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    <br>
+    <button onclick="toggleMode()">🌗 Toggle Light/Dark Mode</button>
+  </div>
 
-<h2>🎵 CyberX Music Player</h2>
-
-<!-- Audio element -->
-<audio id="bgMusic" src="https://raw.githubusercontent.com/nexty22/Website-u/main/song.mp3"></audio>
-
-<!-- Play / Pause button -->
-<button id="playBtn">Play</button>
-
-<script>
-  const music = document.getElementById("bgMusic");
-  const btn = document.getElementById("playBtn");
-
-  btn.addEventListener("click", () => {
-    if (music.paused) {
-      music.play().catch(err => {
-        alert("Audio play nahi ho raha, browser restriction ya file issue ho sakta hai.");
-        console.log(err);
-      });
-      btn.textContent = "Pause";
-    } else {
-      music.pause();
-      btn.textContent = "Play";
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('light-mode');
     }
-  });
-</script>
-
+  </script>
 </body>
 </html>
