@@ -12,7 +12,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: radial-gradient(circle at top, #0f2027, #203a43, #2c5364);
+      background: linear-gradient(135deg, #000428, #004e92);
       color: white;
       font-family: Arial, sans-serif;
       transition: background 0.5s;
@@ -20,21 +20,27 @@
 
     .player {
       text-align: center;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.08);
       padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+      border-radius: 25px;
+      box-shadow: 0 0 25px rgba(0, 200, 255, 0.4);
+      animation: glow 3s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { box-shadow: 0 0 10px #00c6ff; }
+      to { box-shadow: 0 0 40px #0072ff; }
     }
 
     h1 {
       font-size: 1.5rem;
       margin-bottom: 20px;
-      letter-spacing: 1px;
     }
 
     audio {
       width: 300px;
       outline: none;
+      margin-top: 10px;
     }
 
     button {
@@ -55,26 +61,16 @@
     }
 
     .light-mode {
-      background: radial-gradient(circle at top, #ffffff, #e0e0e0, #cfcfcf);
-      color: black;
-    }
-
-    .glow {
-      box-shadow: 0 0 20px #00c6ff, 0 0 40px #0072ff;
-      animation: glow 2s infinite alternate;
-    }
-
-    @keyframes glow {
-      from { box-shadow: 0 0 15px #00c6ff; }
-      to { box-shadow: 0 0 40px #0072ff; }
+      background: linear-gradient(135deg, #f0f0f0, #cfcfcf);
+      color: #000;
     }
   </style>
 </head>
 <body>
-  <div class="player glow">
+  <div class="player">
     <h1>🎧 Batmanna Ansak – CyberX Player</h1>
     <audio controls autoplay>
-      <source src="https://raw.githubusercontent.com/nexty22/cyberX/main/batmanna_ansak.mp3" type="audio/mpeg">
+      <source src="https://raw.githubusercontent.com/nexty22/Website-u/main/batmanna_ansak.mp3" type="audio/mpeg">
       Your browser does not support the audio element.
     </audio>
     <br>
