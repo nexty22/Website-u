@@ -6,81 +6,98 @@
   <title>CyberX Music Player</title>
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #000428, #004e92);
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
       color: white;
       font-family: Arial, sans-serif;
-      transition: background 0.5s;
-    }
-
-    .player {
       text-align: center;
-      background: rgba(255, 255, 255, 0.08);
+      padding-top: 100px;
+    }
+    .player {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
       padding: 30px;
-      border-radius: 25px;
-      box-shadow: 0 0 25px rgba(0, 200, 255, 0.4);
-      animation: glow 3s infinite alternate;
-    }
-
-    @keyframes glow {
-      from { box-shadow: 0 0 10px #00c6ff; }
-      to { box-shadow: 0 0 40px #0072ff; }
-    }
-
-    h1 {
-      font-size: 1.5rem;
-      margin-bottom: 20px;
-    }
-
-    audio {
       width: 300px;
-      outline: none;
-      margin-top: 10px;
+      margin: 0 auto;
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
+      transition: transform 0.3s ease;
     }
-
-    button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 10px;
-      background-color: #00c6ff;
-      color: white;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    button:hover {
-      background-color: #0072ff;
+    .player:hover {
       transform: scale(1.05);
     }
-
-    .light-mode {
-      background: linear-gradient(135deg, #f0f0f0, #cfcfcf);
+    button {
+      background: cyan;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
       color: #000;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #00ffffcc;
+      transform: scale(1.1);
+    }
+    .wave {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: end;
+      height: 50px;
+    }
+    .bar {
+      width: 6px;
+      margin: 0 3px;
+      background: cyan;
+      border-radius: 3px;
+      animation: bounce 1s infinite ease-in-out;
+    }
+    .bar:nth-child(2) { animation-delay: 0.1s; }
+    .bar:nth-child(3) { animation-delay: 0.2s; }
+    .bar:nth-child(4) { animation-delay: 0.3s; }
+    .bar:nth-child(5) { animation-delay: 0.4s; }
+
+    @keyframes bounce {
+      0%, 100% { height: 10px; }
+      50% { height: 40px; }
     }
   </style>
 </head>
 <body>
   <div class="player">
-    <h1>🎧 Batmanna Ansak – CyberX Player</h1>
-    <audio controls autoplay>
-      <source src="https://raw.githubusercontent.com/nexty22/Website-u/main/music/batmanna_ansak.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
-    <br>
-    <button onclick="toggleMode()">🌗 Toggle Light/Dark Mode</button>
+    <h2>🎧 CyberX — Batmanna Ansak</h2>
+    <audio id="song" src="music/batmanna_ansak.mp3"></audio>
+    <button onclick="togglePlay()">▶️ Play Song</button>
+
+    <div class="wave">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
   </div>
 
   <script>
-    function toggleMode() {
-      document.body.classList.toggle('light-mode');
+    const song = document.getElementById("song");
+    const btn = document.querySelector("button");
+    const bars = document.querySelectorAll(".bar");
+
+    function togglePlay() {
+      if (song.paused) {
+        song.play();
+        btn.textContent = "⏸️ Pause";
+        bars.forEach(b => b.style.animationPlayState = "running");
+      } else {
+        song.pause();
+        btn.textContent = "▶️ Play Song";
+        bars.forEach(b => b.style.animationPlayState = "paused");
+      }
     }
+
+    // Start with wave paused
+    bars.forEach(b => b.style.animationPlayState = "paused");
   </script>
 </body>
 </html>
